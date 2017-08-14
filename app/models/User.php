@@ -14,8 +14,6 @@ require "../conexion.php";
      $query = "INSERT INTO users VALUES (null,'$username','$password')";
      $result = $conexion->query($query);
 
-     $response = ($result == 1) ? "as" : false;
-
      $query = "SELECT * FROM users WHERE id = '$conexion->insert_id'";
      $result = $conexion->query($query);
 
@@ -44,9 +42,9 @@ require "../conexion.php";
      }
      $conexion->close();
     }
- }
+  }
 
- $a = new UserModel();
- $data = $a->GetUser(2, "");
- echo $data['id'];
+  $a = new UserModel();
+  $result = $a->CretateUser("triby","pass");
+  print json_encode($result);
 ?>

@@ -1,7 +1,4 @@
 <?php
-/**
- *
- */
 class Conexion
 {
   public function GetConexion()
@@ -13,7 +10,5 @@ class Conexion
     return $conexion;
   }
 }
-
-$e = new Conexion()
 
 ?>

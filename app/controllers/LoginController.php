@@ -1,5 +1,6 @@
 <?php
 require "../models/User.php";
+
   $username = $_POST['username'];
   $password = $_POST['password'];
 
@@ -11,8 +12,11 @@ require "../models/User.php";
     public function Auth($username,$password)
     {
       $a = new UserModel();
-      $data = $a->GetUser(3, "username");
+      $data = $a->GetUser(1, "username");
       echo $data['username'];
     }
   }
+
+  $a = new LoginController();
+  $data = $a->Auth($username, $password);
 ?>
