@@ -10,7 +10,7 @@ require "../conexion.php";
    {
      $e = new Conexion();
      $conexion = $e->GetConexion();
-
+     $password = md5($password);
      $query = "INSERT INTO users VALUES (null,'$username','$password')";
      $result = $conexion->query($query);
 
@@ -41,10 +41,22 @@ require "../conexion.php";
        echo "0 results";
      }
      $conexion->close();
+   }
+
+    public function GetUserLogin($username)
+    {
+      $e = new Conexion();
+      $conexion = $e->GetConexion();
+      $query = "SELECT id, username, password FROM users WHERE username = '$username'";
+      $result = $conexion->query($query);
+
+      if ($result->num_rows > 0) {
+        $result = $result->fetch_assoc();
+        return $result;
+      } else {
+        return false;
+      }
+      $conexion->close();
     }
   }
-
-  $a = new UserModel();
-  $result = $a->CretateUser("triby","pass");
-  print json_encode($result);
 ?>
