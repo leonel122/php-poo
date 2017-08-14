@@ -1,3 +1,8 @@
+<?php
+ini_set('display_errors', 0);
+$error = $_GET['login'];
+echo $error;
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,41 +20,33 @@
 
   </head>
   <body>
-
-
     <div class="container">
       <h1 class="welcome text-center">Welcome to <br> Ice Code</h1>
       <div class="card card-container">
+        <?php
+        if ($error == false){
+        echo '
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+        </div>';
+        }
+        ?>
         <h2 class='login_title text-center'>Login</h2>
         <hr>
-          <form class="form-si">
+          <form class="form-si" action="../controllers/LoginController.php" method="post">
             <p class="input_title">Username</p>
-            <input type="text" class="login_box" id="username" autofocus>
+            <input type="text" class="login_box" id="username" name ="username" autofocus>
             <p class="input_title">Password</p>
-            <input type="password" class="login_box" id="password">
-            <input class="btn btn-lg btn-primary" type="button" id="btn-login" value="Entrar"/>
+            <input type="password" class="login_box" id="password" name ="password">
+            <input class="btn btn-lg btn-primary" type="submit" id="btn-login" value="Entrar"/>
           </form><!-- /form -->
       </div><!-- /card-container -->
     </div><!-- /container -->
-
     <script src="../../asset/jquery/jquery-3.2.1.min.js"></script>
    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script> -->
-   <script type="text/javascript">
-   $(document).ready(function(){
-     $('#btn-login').click(function(){
-       var username = $('#username').val();
-       var password = $('#password').val();
-       $.ajax({
-       data: { 'password':password, 'username':username },
-       type:'POST',
-       url: '../controllers/LoginController.php',
-       success: function(response) {
-          console.log(response);
-           }
-      });
-     });
-   });
-  </script>
   </body>
 </html>

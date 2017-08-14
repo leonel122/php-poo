@@ -2,8 +2,7 @@
 require "../models/User.php";
 
   if (empty($_POST["username"]) || empty($_POST["password"])) {
-    echo "Usuario y/o claves incorrectos";
-    return;
+    header('Location: ../views/index.php?login=false');
   }
 
   $username = $_POST['username'];
@@ -23,11 +22,11 @@ require "../models/User.php";
       {
         session_start();
         $_SESSION['user'] = $data['id'];
-        
+        header('Location: ../views/home.php');
       }
       else
       {
-        return "no logueado";
+        header('Location: ../views/index.php?login=false');
       }
     }
   }
